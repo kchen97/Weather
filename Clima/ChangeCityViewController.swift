@@ -14,7 +14,7 @@ protocol ChangeCityDelegate {
 }
 
 
-class ChangeCityViewController: UIViewController {
+class ChangeCityViewController: UIViewController, UITextFieldDelegate {
     
     //Declare the delegate variable here:
     var delegate : ChangeCityDelegate?
@@ -22,6 +22,15 @@ class ChangeCityViewController: UIViewController {
     //This is the pre-linked IBOutlets to the text field:
     @IBOutlet weak var changeCityTextField: UITextField!
 
+    override func viewDidLoad() {
+        changeCityTextField.delegate = self
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
     
     //This is the IBAction that gets called when the user taps on the "Get Weather" button:
     @IBAction func getWeatherPressed(_ sender: AnyObject) {
